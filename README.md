@@ -18,7 +18,7 @@ Clone repository for yourself.
 $ clone https://github.com/dzoomyolo/MidoriFramework.git
 ```
 
-To create a page, use the folder routes,
+To create a page, use the folder *routes*,
 and then, to declare the path to the page, use:
 ```php
 $path ="/api/:";//API ALREADY DECLARED, : - means use a link like /api/foo/bar
