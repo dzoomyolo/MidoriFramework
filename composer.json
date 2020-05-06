@@ -1,0 +1,12 @@
+{
+    "name": "dzoom/midori-framework",
+    "description": "Simple framework for websites",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Dzoom",
+            "email": "dzoomka@gmail.com"
+        }
+    ],
+    "require": {}
+}

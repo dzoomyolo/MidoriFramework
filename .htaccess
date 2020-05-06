@@ -1,0 +1,7 @@
+AddDefaultCharset UTF-8
+
+Header set Access-Control-Allow-Origin *
+
+RewriteEngine on
+
+RewriteRule ^(.*)$ index.php [L,QSA]
