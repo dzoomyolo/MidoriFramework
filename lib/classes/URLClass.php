@@ -23,6 +23,22 @@ class URLClass{
         );
         return $url_arr;
     }
+    //get post fields
+    public function postFields(){
+        $p_arr = array();
+        foreach($_POST as $i=>$p){
+            array_push($p_arr,array($i=>$p));
+        }
+        return $p_arr;
+    }
+    //get 'get' fields
+    public function getFields(){
+        $g_arr = array();
+        foreach($_GET as $i=>$p){
+            array_push($g_arr,array($i=>$p));
+        }
+        return $g_arr;
+    }
 }
 
 ?>
