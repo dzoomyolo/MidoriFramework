@@ -16,6 +16,6 @@ $url = new URLClass();
 
 $router = new RouterClass();
 
-$logger = new LoggerClass();
+$logger = new LoggerClass("./Logger/");
 
 ?>
