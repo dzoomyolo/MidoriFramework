@@ -53,7 +53,19 @@ class DatabaseClass{
         	echo __LINE__.$e->getMessage();
         }
     }
-    public function returnAnswer(){
+    //any sql query
+    public function query($sql,$arr){
+        try {
+            $result = $this->db->prepare($sql);
+            $result->execute($arr);
+            $this->a = $result->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $e){
+        	echo __LINE__.$e->getMessage();
+        }
+        return $this->returnAnswer();
+    }
+    //return answer from bd
+    private function returnAnswer(){
         return $this->answer;
     }
 }
