@@ -8,7 +8,7 @@ class RouterClass{
     function __construct(){
         $this->getRoutes();
     }
-    function getRoutes(){
+    private function getRoutes(){
         $fileClasses = scandir("./routes");
         foreach($fileClasses as $class){
             $path = "./routes/".$class;
@@ -28,22 +28,18 @@ class RouterClass{
         }
         $this->route();
     }
-    function route(){
-        $url = parse_url($_SERVER['REQUEST_URI']);
-        $path = $url['path'];
-        $path_array = explode("/",$url['path']);
-        $this->server_url_arr = $path_array;
+    private function route(){
+        global $url;
+        $uri = $url->getUrl();
+        $this->server_url_arr = $uri['path_arr'];
         foreach($this->paths as $p){
-            if($p['path'] == $path || $p['path'] == "/".$path_array[1]."/:"){
+            if($p['path'] == $uri['path'] || $p['path'] == "/".$uri['path_arr'][1]."/:"){
                 array_push($this->actions,$p['file']);
             }
         }
         $this->getContent();
     }
-    function getContent(){
-        // if(empty($this->actions)){
-        //     echo '<meta http-equiv="refresh" content="0;url=/404" />';
-        // }
+    private function getContent(){
         foreach($this->actions as $action){
             if($action != "API.php") session_start();
             require "./routes/".$action;
