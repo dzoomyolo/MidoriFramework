@@ -64,6 +64,16 @@ class APIClass{
         $e = json_encode($e,JSON_UNESCAPED_UNICODE);
         die($e);
     }
+    /**
+     * Declare new method in exist method
+     * 
+     * @param string $methodname Url path
+     * 
+     * @param string $methodtype Data request method
+     * 
+     * @param function $methodfunction Executable function for a method
+     * 
+     */
     public function declareMethod($methodname,$methodtype,$methodfunction){
         $url = parse_url($_SERVER['REQUEST_URI']);
         $server_path = $url['path'];
