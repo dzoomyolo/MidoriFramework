@@ -14,8 +14,8 @@ $db = new DatabaseClass(array("dsn"=>"mysql:host=localhost;dbname=anim","user"=>
 
 $url = new URLClass();
 
-$router = new RouterClass();
-
 $logger = new LoggerClass("./Logger/");
+
+$router = new RouterClass();
 
 ?>
