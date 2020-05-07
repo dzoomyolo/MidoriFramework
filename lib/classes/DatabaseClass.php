@@ -12,9 +12,11 @@ class DatabaseClass{
         $this->setData($connectData);
         $this->connection();
     }
+    //set auth data
     public function setData($c){
         $this->PDOAuthArr = $c;
     }
+    //create connection to mysql
     private function connection(){
         try{
             $this->db = new PDO($this->PDOAuthArr['dsn'],$this->PDOAuthArr['user'],$this->PDOAuthArr['pass'],[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
@@ -58,7 +60,7 @@ class DatabaseClass{
         try {
             $result = $this->db->prepare($sql);
             $result->execute($arr);
-            $this->a = $result->fetchAll(PDO::FETCH_ASSOC);
+            $this->answer = $result->fetchAll(PDO::FETCH_ASSOC);
         } catch(PDOException $e){
         	echo __LINE__.$e->getMessage();
         }
