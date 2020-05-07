@@ -11,6 +11,7 @@ class APIClass{
         $this->api_path = $p;
         $this->fetchMetods();
     }
+    //read all method in folder
     private function fetchMetods(){
         $url = parse_url($_SERVER['REQUEST_URI']);
         $server_path = $url['path'];
@@ -27,6 +28,7 @@ class APIClass{
         $this->method = array("name"=>$url_arr[2],"success"=>0);
         $this->routeMethods();
     }
+    //route method
     private function routeMethods(){
         foreach($this->methods as $method){
             if($this->method["name"] == $method['method']){
@@ -39,11 +41,13 @@ class APIClass{
             $this->Error(404);
         }
     }
+    //create answer
     public function Answer(){
         $a = $this->createJson($this->answer);
         $a = json_encode($a,JSON_UNESCAPED_UNICODE);
         die($a);
     }
+    //create json
     private function createJson($r){
         $json = new \stdClass;
         $json->result = $r;
