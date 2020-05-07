@@ -6,7 +6,7 @@ Simple web site framework with API support
 
   - Support for declaring API methods
   - Easy routing
-
+  - Simple logging
 
 ### Installation
 
