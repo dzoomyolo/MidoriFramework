@@ -4,6 +4,13 @@ namespace lib\classes;
 
 use \PDO;
 
+/**
+ * Work with the database
+ * @property $db Object of database
+ * @property $PDOAuthArr Contains data for connection
+ * @property $answer Response to queries from the database
+ */
+
 class DatabaseClass{
     protected $db;
     protected $PDOAuthArr;
@@ -12,11 +19,15 @@ class DatabaseClass{
         $this->setData($connectData);
         $this->connection();
     }
-    //set auth data
+    /**
+     * Set auth data
+     */
     public function setData($c){
         $this->PDOAuthArr = $c;
     }
-    //create connection to mysql
+    /**
+     * Create connection to mysql
+     */
     private function connection(){
         try{
             $this->db = new PDO($this->PDOAuthArr['dsn'],$this->PDOAuthArr['user'],$this->PDOAuthArr['pass'],[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
@@ -24,7 +35,18 @@ class DatabaseClass{
             echo 'connection failed: ' . $e->getMessage();
         }
     }
-    //return one position in array
+
+    /**
+     * Selection on one element in the table
+     * 
+     * @param string $tablename Table name
+     * 
+     * @param string $options Terms sql of request
+     * 
+     * @param string[] $arr Array of keys for $options
+     * 
+     * @return array one element in array
+     */
     public function selectOne($tablename,$options,$arr){
         try {
             $result = $this->db->prepare("SELECT * FROM ".$tablename." ".$options);
@@ -35,7 +57,18 @@ class DatabaseClass{
         }
         return $this->returnAnswer();
     }
-    //return array of elements
+
+    /**
+     * Selection multiple array of elements
+     * 
+     * @param string $tablename Table name
+     * 
+     * @param string $options Terms sql of request
+     * 
+     * @param string[] $arr Array of keys for $options
+     * 
+     * @return array some elements in array
+     */
     public function selectAll($tablename,$options,$arr){
         try {
             $result = $this->db->prepare("SELECT * FROM ".$tablename." ".$options);
@@ -46,7 +79,16 @@ class DatabaseClass{
         }
         return $this->returnAnswer();
     }
-    //update element
+    /**
+     * Update base element
+     * 
+     * @param string $tablename Table name
+     * 
+     * @param string $options Terms sql of request
+     * 
+     * @param string[] $arr Array of keys for $options
+     * 
+     */
     public function update($tablename,$options,$arr){
         try {
             $result = $this->db->prepare("UPDATE ".$tablename." SET ".$options);
@@ -55,7 +97,16 @@ class DatabaseClass{
         	echo __LINE__.$e->getMessage();
         }
     }
-    //any sql query
+    /**
+     * Any sql query
+     * 
+     * @param string $sql SQL string
+     * 
+     * @param string $arr Array of keys for $sql
+     * 
+     * @return any Array data
+     * 
+     */
     public function query($sql,$arr){
         try {
             $result = $this->db->prepare($sql);
@@ -66,7 +117,10 @@ class DatabaseClass{
         }
         return $this->returnAnswer();
     }
-    //return answer from bd
+
+    /**
+     * Return answer from bd
+     */
     private function returnAnswer(){
         return $this->answer;
     }
